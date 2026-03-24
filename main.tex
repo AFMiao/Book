@@ -1,0 +1,136 @@
+\documentclass[a4paper, 12pt, openright]{ctexbook}
+
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{setspace}
+\usepackage{xcolor}
+\usepackage{tikz} % 引入 tikz 绘制标签
+\usepackage{enotez} % 引入 enotez 处理尾注
+
+% --- 1. 字体设置 (思源系列) ---
+\setCJKmainfont{Source Han Serif CN}[ 
+    UprightFont = Source Han Serif CN,
+    BoldFont = Source Han Serif CN Bold,
+    ItalicFont = Source Han Serif CN
+]
+\setCJKsansfont{Source Han Sans SC}[ 
+    UprightFont = Source Han Sans SC,
+    BoldFont = Source Han Sans SC Bold
+]
+
+% --- 2. 页面与行距 ---
+\geometry{left=2.5cm, right=2.5cm, top=3cm, bottom=3cm}
+\setlength{\headheight}{15pt} % 修复页眉高度溢出的警告
+\linespread{1.5}
+
+% --- 3. 元数据与链接设置 ---
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black, 
+    filecolor=magenta,      
+    urlcolor=blue,
+    pdftitle={汉魏六朝文选}, 
+    pdfauthor={刘文忠},
+    pdfsubject={古典文学},
+    pdflang={zh-CN}
+}
+
+% % --- 4. 尾注设置 ---
+% \setenotez{
+%     list-name = {注释},
+%     reset = true,
+%     list-heading = \subsection*{#1} % 强制降级为 subsection，避免另起一页且缩小字号
+% }
+
+% --- 5. 出血标签 (统一灰色) ---
+% 简化了原有逻辑，统一使用 gray 填充 
+\newcommand{\drawthumb}[1]{%
+  \ifnum\value{chapter}>0
+    \begin{tikzpicture}[remember picture, overlay]
+      \node[
+        fill=gray, % 统一替换为灰色
+        text=white,
+        font=\sffamily\bfseries\Large, 
+        minimum width=1.5cm, % [cite: 5]          
+        minimum height=2cm,  % [cite: 5]          
+        anchor=#1
+      ] at ([yshift={-2cm - (\value{chapter}-1)*2.5cm}]current page.#1) { \thechapter }; % [cite: 5]
+    \end{tikzpicture} % [cite: 6]
+  \fi
+}
+
+% --- 6. 页眉页脚 ---
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[CE]{\leftmark} % 
+\fancyhead[CO]{\rightmark} % 
+\fancyfoot[C]{\thepage} % 
+\fancyhead[RO]{\drawthumb{north east}}
+\fancyhead[LE]{\drawthumb{north west}} 
+
+% 覆盖 chapter 默认的 plain 页面样式，确保章首页也有标签，且不显示横线
+\fancypagestyle{plain}{
+  \fancyhf{}
+  \fancyfoot[C]{\thepage}
+  \renewcommand{\headrulewidth}{0pt}
+  \fancyhead[RO]{\drawthumb{north east}}
+  \fancyhead[LE]{\drawthumb{north west}}
+}
+
+% --- 7. 标题格式 ---
+\ctexset{
+    chapter = {
+        format = \centering\Huge\bfseries,
+        number = \chinese{chapter}, % [cite: 2]
+        name = {第, 章}, % [cite: 2]
+        beforeskip = 10pt, % [cite: 2]
+        afterskip = 30pt % [cite: 2]
+    },
+    section = {
+        format = \Large\bfseries,
+        beforeskip = 20pt,
+        afterskip = 15pt
+    }
+}
+
+% --- 8. 内容层次自定义环境 ---
+% % 文人简介环境：使用楷体，左右边距缩进，并强制首行缩进两字符
+% \newenvironment{authorintro}
+%   {\list{}{\rightmargin2\ccwd \leftmargin2\ccwd \itemindent=2\ccwd \listparindent=2\ccwd}%
+%    \item\relax\kaishu}
+%   {\endlist\vspace{1em}}
+
+% % 文章前言 (题解) 环境：使用仿宋，整体字号略小，左右边距缩进，并强制首行缩进两字符
+% \newenvironment{preface}
+%   {\list{}{\rightmargin2\ccwd \leftmargin2\ccwd \itemindent=2\ccwd \listparindent=2\ccwd}%
+%    \item\relax\small\fangsong}
+%   {\endlist\vspace{1em}}
+
+% 引用环境 (覆盖默认 quote)：缩进逻辑与前言保持一致
+\renewenvironment{quote}
+  {\list{}{\rightmargin2\ccwd \leftmargin2\ccwd \itemindent=2\ccwd \listparindent=2\ccwd}%
+   \item\relax\small\color{black}}
+  {\endlist}
+
+\begin{document}
+
+\frontmatter
+
+\title{\Huge \textbf{汉魏六朝文选}}
+\author{\textbf{【中】刘文忠}\quad 选编}
+\date{}
+
+\maketitle
+
+
+
+\tableofcontents
+
+\mainmatter
+
+
+
+\end{document}

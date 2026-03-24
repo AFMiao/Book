@@ -1,0 +1,117 @@
+\documentclass[a4paper, 12pt, openright]{ctexbook} 
+
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{setspace}
+\usepackage{xcolor}
+
+% --- 1. 字体设置 (思源系列) ---
+\setCJKmainfont{Source Han Serif CN}[ 
+    UprightFont = Source Han Serif CN,
+    BoldFont = Source Han Serif CN Bold,
+    ItalicFont = Source Han Serif CN
+]
+\setCJKsansfont{Source Han Sans SC}[ 
+    UprightFont = Source Han Sans SC,
+    BoldFont = Source Han Sans SC Bold
+]
+
+% --- 2. 页面与行距 (保持原版宽松布局) ---
+\geometry{left=2.5cm, right=2.5cm, top=3cm, bottom=3cm}\setlength{\headheight}{15pt} % 修复页眉高度溢出的警告
+\linespread{1.5} 
+% --- 3. 元数据与链接设置 ---
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black, 
+    filecolor=magenta,      
+    urlcolor=blue,
+    pdftitle={在传统与革命之间},
+    pdfauthor={曼弗雷德·里德尔},
+    pdfsubject={黑格尔法哲学研究},
+    pdfkeywords={欧陆哲学, 法哲学, 黑格尔哲学},
+    pdflang={zh-CN}
+}
+
+% --- 4. 页眉页脚 ---
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[CE]{\leftmark}
+\fancyhead[CO]{\rightmark}
+\fancyfoot[C]{\thepage}
+
+% --- 5. 标题格式 ---
+\ctexset{
+    % 设置“篇”的格式
+    part = {
+        format = \centering\Huge\bfseries,
+        name = {第, 部分},
+        number = \chinese{part},
+    },
+    chapter = {
+        format = \centering\Huge\bfseries,
+        number = \chinese{chapter},
+        name = {,},
+        beforeskip = 10pt,
+        afterskip = 30pt
+    },
+    section = {
+        format = \centering\Large\bfseries,
+        beforeskip = 20pt,
+        afterskip = 15pt
+    },
+    subsection = {
+        format = \large\bfseries, 
+        beforeskip = 10pt,
+        afterskip = 10pt
+    }
+}
+
+% --- 6. 引用环境 ---
+\renewenvironment{quote}
+  {\list{}{\rightmargin2\ccwd \leftmargin2\ccwd \itemindent=2\ccwd \listparindent=2\ccwd}%
+   \item\relax\small\kaishu\color{black}}
+  {\endlist}
+
+% --- 书籍信息 ---
+\title{\Huge \textbf{在传统与革命之间}\\\Large 黑格尔法哲学研究}
+\author{\textbf{【德】曼弗雷德·里德尔}}
+\date{}
+
+\begin{document}
+
+\frontmatter
+
+\maketitle
+
+\input{chapters/总序.tex}
+
+\tableofcontents
+
+\mainmatter
+
+\input{chapters/初版前言.tex}
+\input{chapters/新版前言.tex}
+
+\part{法哲学的体系建构}
+\input{chapters/客观精神与实践哲学.tex}
+\input{chapters/制度中的辩证法.tex}
+
+\part{自然法与实定法}
+\input{chapters/自由法则与自然的统治.tex}
+\input{chapters/黑格尔对自然法的批判.tex}
+
+\part{政治经济学与政治哲学}
+\input{chapters/对国民经济学的接受.tex}
+\input{chapters/“市民社会”概念及其历史起源问题.tex}
+
+\part{法哲学与历史哲学}
+\input{chapters/黑格尔《法哲学原理》中的传统与革命.tex}
+\input{chapters/黑格尔历史哲学中的进步与辩证法.tex}
+
+\input{chapters/各章来源.tex}
+\input{chapters/译后记.tex}
+
+\end{document}

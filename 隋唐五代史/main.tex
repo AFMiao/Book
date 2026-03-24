@@ -1,0 +1,88 @@
+\documentclass[fontset=fandol, a4paper, 12pt, openright]{ctexbook} 
+
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{setspace}
+\usepackage{xcolor}
+
+% --- 2. 页面与行距 (保持原版宽松布局) ---
+\geometry{left=2.5cm, right=2.5cm, top=3cm, bottom=3cm}
+\linespread{1.5} 
+
+% --- 3. 元数据与链接设置 (已更新为本书信息) ---
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black, 
+    filecolor=magenta,      
+    urlcolor=blue,
+    % 电子书信息
+    pdftitle={隋唐五代史 上卷},
+    pdfauthor={王仲荤},
+    % pdfsubject={帝国与国家},
+    pdfkeywords={中国历史，隋唐五代史},
+    pdflang={zh-CN}
+}
+
+% --- 4. 页眉页脚 ---
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[CE]{\leftmark}
+\fancyhead[CO]{\rightmark}
+\fancyfoot[C]{\thepage}
+
+% --- 5. 标题格式 (配合12pt的标准大小) ---
+\ctexset{
+    chapter = {
+        format = \centering\Huge\bfseries,
+        number = \chinese{chapter},
+        name = {第, 章},
+        beforeskip = 10pt,
+        afterskip = 30pt
+    },
+    section = {
+        format = \Large\bfseries,
+        beforeskip = 20pt,
+        afterskip = 15pt
+    },
+    subsection = {
+        format = \large\bfseries, 
+        beforeskip = 10pt,
+        afterskip = 10pt
+    }
+}
+
+% --- 6. 引用环境 ---
+\renewenvironment{quote}
+  {\list{}{\rightmargin\leftmargin}%
+   \item\relax\small\itshape\color{darkgray}}
+  {\endlist}
+
+% --- 书籍信息 ---
+\title{\Huge \textbf{隋唐五代史\quad 上卷}\\}
+\author{\textbf{【中】王仲荤}}
+\date{}
+
+\begin{document}
+
+\frontmatter
+
+\maketitle
+
+\chapter*{作者简介}
+\addcontentsline{toc}{chapter}{作者简介}
+\markboth{作者简介}{作者简介} % 设置页眉
+
+\textbf{王仲荤}（1913—1986）中国历史学家。浙江余姚人。1937年上海正风文学院毕业。曾任上海太炎文学院、中央大学、山东大学教授。新中国成立后，历任山东大学教授、历史系主任，《文史哲》编委会副主任，中国唐史学会副会长，山东省史学会理事长，国务院古籍整理出版规划小组成员。长期从事文史教学和研究，专于魏晋南北朝隋唐五代史，晚年致力于敦煌学和古代物价史的研究，写成《敦煌石室地志行记综录》。著有《魏晋南北朝史》、《隋唐五代史》、《关于中国奴隶社会的瓦解及封建关系的形成问题》、北周六典》、《北周地理志》、《西昆酬唱集注》、《敦煌石室地志考释》等。另出版有《鹊华山馆丛稿》、《鹊华山馆丛续编》。
+
+\tableofcontents
+
+\mainmatter
+
+% \setcounter{chapter}{4}
+
+
+
+\end{document}

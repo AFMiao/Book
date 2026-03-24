@@ -1,0 +1,10 @@
+*.aux
+*.log
+*.out
+*.gz
+*.toc
+
+thumbs
+书脊标签
+八大主题
+epub
