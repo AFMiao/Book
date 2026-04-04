@@ -9,6 +9,9 @@
 \usepackage{xcolor}
 \usepackage{tikz} % 引入 tikz 绘制标签
 \usepackage{enotez} % 引入 enotez 处理尾注
+% --- 引入图片处理宏包 ---
+\usepackage{graphicx}
+\graphicspath{{images/}} % 建议设定统一的图片存放路径
 
 % --- 1. 字体设置 (思源系列) ---
 \setCJKmainfont{Source Han Serif CN}[ 
@@ -115,6 +118,18 @@
    \item\relax\kaishu\small\color{black}}
   {\endlist}
 
+% --- 引入并配置标题宏包 ---
+\usepackage{caption}
+\captionsetup[figure]{
+    format=hang,               % 悬挂缩进：长标题换行后与首行文字对齐，不跑到标签下方
+    labelsep=quad,             % 标签（如“图 1.1”）和标题文字之间用一个空格隔开
+    font={small, stretch=1.2}, % 字号调小为 \small，局部行距缩小为 1.2（覆盖全局的 1.5，避免长标题太散）
+    labelfont={bf, sffamily},  % 标签加粗，并使用你配置好的无衬线字体（思源黑体）
+    textfont={kaishu},         % 标题正文使用楷体，与你现有的 quote 环境逻辑保持和谐
+    justification=justified,   % 两端对齐，适合长段落阅读
+    singlelinecheck=false      % 设为 false 强制所有长短标题都左对齐；若喜欢单行标题居中，可设为 true
+}
+
 \begin{document}
 
 \frontmatter
@@ -132,5 +147,6 @@
 \mainmatter
 
 \input{chapters/力量.tex}
+\input{chapters/深蹲.tex}
 
 \end{document}
