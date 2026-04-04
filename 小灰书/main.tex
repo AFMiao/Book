@@ -13,6 +13,7 @@
 % --- 引入图片处理宏包 ---
 \usepackage{graphicx}
 \graphicspath{{figs/}} % 建议设定统一的图片存放路径
+\usepackage{siunitx}
 
 % --- 1. 字体设置 (思源系列) ---
 \setCJKmainfont{Source Han Serif CN}[ 
@@ -132,6 +133,9 @@
     justification=justified,   % 两端对齐，适合长段落阅读
     singlelinecheck=false      % 设为 false 强制所有长短标题都左对齐；若喜欢单行标题居中，可设为 true
 }
+
+\DeclareSIUnit{\pound}{lb}
+\DeclareSIUnit{\rm}{RM}
 
 \begin{document}
 
