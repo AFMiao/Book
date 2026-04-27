@@ -1,0 +1,95 @@
+% \documentclass[a4paper]{article}
+% \usepackage[top=5mm, bottom=5mm, left=15mm, right=15mm]{geometry}
+% \usepackage{tikz}
+% \usepackage{ifthen}
+
+% \pagestyle{empty} % 去除页码
+
+% \begin{document}
+
+% \begin{center}
+% \begin{tikzpicture}[x=1mm, y=1mm]
+%     % 设置参数
+%     \def\rows{31}      % 总行数（可根据需要调整）
+%     \def\cols{25}      % 每行格数
+%     \def\cellW{7}      % 格宽 7mm
+%     \def\cellH{8}      % 格高 8mm
+%     \def\rowGap{1}     % 行间距 1mm
+
+%     \foreach \r in {1,...,\rows} {
+%         % 计算当前行的纵向偏移量量：(当前行号-1) * (格高 + 间距)
+%         \pgfmathsetmacro{\yoffset}{-(\r-1) * (\cellH + \rowGap)}
+        
+%         % 绘制一行格子
+%         \foreach \c in {1,...,\cols} {
+%             \draw (\c*\cellW - \cellW, \yoffset) rectangle ++(\cellW, -\cellH);
+%         }
+        
+%         % 每隔 4 行，在行尾右下角标注字数
+%         \pgfmathparse{mod(\r, 4) == 0 ? 1 : 0}
+%         \ifdim\pgfmathresult pt=1pt
+%             \pgfmathsetmacro{\wordcount}{\r * \cols}
+%             \node[anchor=north west, inner sep=2pt] at (\cols*\cellW, \yoffset - \cellH) {
+%                 \tiny \pgfmathprintnumber{\wordcount}
+%             };
+%         \fi
+%     }
+% \end{tikzpicture}
+% \end{center}
+
+% \end{document}
+
+\documentclass[a4paper]{article}
+\usepackage[top=8mm, bottom=8mm, left=15mm, right=15mm]{geometry}
+\usepackage{tikz}
+\usepackage{ifthen}
+
+\pagestyle{empty}
+
+% --- 參數設定 ---
+\def\rowsPerPage{31}  % 每頁總行數（請根據邊距自行微調）
+\def\cols{25}         % 每行格數
+\def\cellW{7}         % 格寬 7mm
+\def\cellH{8}         % 格高 8mm
+\def\rowGap{1}        % 行間距 1mm
+
+% --- 繪製單頁的宏 ---
+% 參數 #1: 當前頁碼 (從1開始)
+\newcommand{\drawgridpage}[1]{
+    \par\noindent % 确保新起一行并取消段落缩进
+    \makebox[\textwidth][c]{ % 水平居中且不增加垂直空白
+        \begin{tikzpicture}[x=1mm, y=1mm]
+            \foreach \r in {1,...,\rowsPerPage} {
+                % 计算绝对行号：(页码-1) * 每页行数 + 当前页内行号
+                \pgfmathtruncatemacro{\absRow}{(#1 - 1) * \rowsPerPage + \r}
+                \pgfmathsetmacro{\yoffset}{-(\r-1) * (\cellH + \rowGap)}
+                
+                % 绘制一行 25 个格子
+                \foreach \c in {1,...,\cols} {
+                    \draw (\c*\cellW - \cellW, \yoffset) rectangle ++(\cellW, -\cellH);
+                }
+                
+                % 每隔 4 行（绝对行号）标注字数
+                \pgfmathparse{mod(\absRow, 4) == 0 ? 1 : 0}
+                \ifdim\pgfmathresult pt=1pt
+                    \pgfmathtruncatemacro{\wordcount}{\absRow * \cols}
+                    \node[anchor=north west, inner sep=2pt] at (\cols*\cellW, \yoffset - \cellH) {
+                        \tiny \wordcount
+                    };
+                \fi
+            }
+        \end{tikzpicture}
+    }
+    \par
+}
+
+\begin{document}
+
+\drawgridpage{1}
+% \clearpage
+
+\drawgridpage{2}
+% \clearpage
+
+% \drawgridpage{3} % 第三頁：行 57-84...
+\end{document}
