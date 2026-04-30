@@ -32,9 +32,9 @@
     linkcolor=black, 
     filecolor=magenta,      
     urlcolor=blue,
-    pdftitle={汉魏六朝文选}, 
-    pdfauthor={刘文忠},
-    pdfsubject={古典文学},
+    pdftitle={重访革命史：解读现代性}, 
+    pdfauthor={曹征路},
+    pdfsubject={中国历史},
     pdflang={zh-CN}
 }
 
@@ -61,6 +61,8 @@
 %     \end{tikzpicture} % [cite: 6]
 %   \fi
 % }
+% \fancyhead[RO]{\drawthumb{north east}}
+% \fancyhead[LE]{\drawthumb{north west}} 
 
 % --- 6. 页眉页脚 ---
 \pagestyle{fancy}
@@ -68,16 +70,13 @@
 \fancyhead[CE]{\leftmark} % 
 \fancyhead[CO]{\rightmark} % 
 \fancyfoot[C]{\thepage} % 
-\fancyhead[RO]{\drawthumb{north east}}
-\fancyhead[LE]{\drawthumb{north west}} 
-
 % 覆盖 chapter 默认的 plain 页面样式，确保章首页也有标签，且不显示横线
 \fancypagestyle{plain}{
   \fancyhf{}
   \fancyfoot[C]{\thepage}
   \renewcommand{\headrulewidth}{0pt}
-  \fancyhead[RO]{\drawthumb{north east}}
-  \fancyhead[LE]{\drawthumb{north west}}
+  % \fancyhead[RO]{\drawthumb{north east}}
+  % \fancyhead[LE]{\drawthumb{north west}}
 }
 
 % --- 7. 标题格式 ---
@@ -119,18 +118,17 @@
 
 \frontmatter
 
-\title{\Huge \textbf{汉魏六朝文选}}
-\author{\textbf{【中】刘文忠}\quad 选编}
+\title{\Huge \textbf{重访革命史：解读现代性}}
+\author{\textbf{【中】曹征路}}
 \date{}
 
 \maketitle
-
-
 
 \tableofcontents
 
 \mainmatter
 
-
+\input{chapters/chapter1.tex}
+\input{chapters/chapter2.tex}
 
 \end{document}
